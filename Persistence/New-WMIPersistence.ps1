@@ -1,4 +1,4 @@
-function New-WMIPersistence {
+function New-WmiPersistence {
     <#
       .SYNOPSIS 
       Creates persistence through WMI event subscriptions. Based on work by @mattifestation and @harmj0y from
@@ -99,7 +99,75 @@ function New-WMIPersistence {
     Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments $instanceArgs
 }
 
-Function Remove-WMIPersistence {
+Function Get-WmiPersistence {
+    <#
+      .SYNOPSIS 
+      Gets WMI Objects related to persistence as created by New-WMIPersistence
+
+      Author: Jared Haight (@jaredhaight)
+      License: MIT License
+      Required Dependencies: None
+      Optional Dependencies: None
+
+      .PARAMETER Name
+      The name to used for when New-WMIPersistence was run
+
+      .PARAMETER AllBindings
+      Gets all FilterToConsumerBindings. Useful if you're not sure what the name of your 
+      WMI objects were.
+
+      .EXAMPLE 
+      PS C:\> Get-WMIPersistence -Name Update 
+
+      .LINK 
+      Script source can be found at https://github.com/jaredhaight/PowerPunch/blob/master/Persistence/New-WMIPersistence.ps1
+    
+    #>
+    [cmdletbinding()]
+    Param(
+        [Parameter(ParameterSetName="Name")]
+        [string]$Name,
+
+        [Parameter(ParameterSetName="AllBindings")]
+        [switch]$AllBindings=$false
+    )
+    
+    if (-not $AllBindings) {
+        $filter = Get-WmiObject -Namespace "root/subscription" -Class __EventFilter -Filter "Name = '$Name'"
+
+        if ($filter) {
+            $filter
+        }
+        else {
+            Write-Output "No __EventFilter named $Name found!"
+        }
+
+        $consumer = Get-WmiObject -Namespace "root/subscription" -Class CommandLineEventConsumer -Filter "Name = '$Name'"
+    
+        if ($consumer) {
+            $consumer
+        }
+        else {
+            Write-Output "No CommandLineEventConsumer named $ConsumerName found!"
+        }
+    }
+
+    if ($AllBindings) {
+        $filterToConsumerBinding = Get-WmiObject __FilterToConsumerBinding -Namespace root\subscription
+    }
+    else {
+        $filterToConsumerBinding = Get-WmiObject __FilterToConsumerBinding -Namespace root\subscription | Where-Object { $_.Filter -match "$Name"}
+    }
+
+    if ($filterToConsumerBinding) {
+        $filterToConsumerBinding
+    }
+    else {
+        Write-Output "No FilterToConsumerBinding named $Name found!"
+    }
+}
+
+Function Remove-WmiPersistence {
     <#
       .SYNOPSIS 
       Removes persistence created through New-WMIPersistence
