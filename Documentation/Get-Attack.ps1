@@ -142,6 +142,16 @@
       FuzzySecurity\PowerShell-Suite\Invoke-MS16-032.ps1,Invoke-MS16-032,Escalation,Exploits MS16-032 to spawn a cmd prompt running as SYSTEM.
       putterpanda\mimikittenz\Invoke-mimikittenz.ps1,Invoke-mimikittenz,Passwords,Utilizes Windows function ReadProcessMemory() to extract juicy information from target processes memory using regex.
       jaredhaight\powerpunch\new-scheduledtaskz.ps1,New-ScheduledTaskZ,Persistence,Allows you to create scheduled tasks on local and remote computers.
+      jaredhaight\powerpunch\New-WMIPersistence.ps1,New-WMIPersistence,Persistence,Allows you to trigger a payload based on a WMI trigger.
+      EmpireProject\KeePassConfig.ps1,Find-KeePassConfig,Recon; Passwords,Function to search for KeePass.config.xml and KeePass.ini files.
+      EmpireProject\KeePassConfig.ps1,Get-KeePassConfigTrigger,Recon; Passwords,Analyze a KeePass config for triggers.
+      EmpireProject\KeePassConfig.ps1,Add-KeePassConfigTrigger,Passwords,Adds a KeePass exfiltration trigger to a KeePass.config.xml path or result from Find-KeePassConfig.
+      EmpireProject\KeePassConfig.ps1,Remove-KeePassConfigTrigger,Passwords,Removes a KeePass exfiltration trigger to a KeePass.config.xml path or result from Find-KeePassConfig.
+      hlldz\Invoke-Phant0m,Invoke-Phant0m,Evasion,Walks the Event Log Service process and kills its threads, turning off logging for the machine.
+      Kevin-Robertson\Invoke-TheHash\Invoke-WMIExec.ps1,Invoke-WMIExec,Code Execution; Latteral Movement,Invoke-WMIExec performs WMI command execution on targets using NTLMv2 pass the hash authentication.
+      Kevin-Robertson\Invoke-TheHash\Invoke-SMBExec.ps1,Invoke-SMBExec,Code Execution; Latteral Movement,Invoke-SMBExec performs SMBExec style command execution with NTLMv2 pass the hash authentication. Invoke-SMBExec supports SMB1 and SMB2 with and without SMB signing.
+      Kevin-Robertson\Invoke-TheHash\Invoke-SMBClient.ps1,Invoke-SMBClient,Files; Recon; Exfiltration,Invoke-SMBClient performs basic file share tasks with pass the hash. This module supports SMB2 (2.1) only with and without SMB signing. Note that this client is slow compared to the Windows client.
+      EmpireProject\Invoke-Kerberoast.ps1,Invoke-Kerberoast,Passwords,Requests service tickets for kerberoast-able accounts and returns extracted ticket hashes.
     '
 
     Write-Verbose "Checking Attacks.."
