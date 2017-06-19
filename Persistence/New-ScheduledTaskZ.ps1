@@ -1,4 +1,4 @@
-﻿function New-ScheduledTaskZ {
+function New-ScheduledTaskZ {
     <# 
       .SYNOPSIS 
       Creates Scheduled Tasks using the Schedule.Service COM Object
@@ -47,11 +47,7 @@
       Create a Scheduled Task named Updater that adds 3+2 in PowerShell. Task will start in 15 minutes and repeat every 90 minutes.
 
       .EXAMPLE 
-<<<<<<< HEAD
       PS C:\>New-ScheduledTaskZ -Name TaskMan -OnBoot -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}" -Repeat 15 -Username DERBYCON\AuditNomNom -Password ChangeMe1
-=======
-      PS C:\>New-ScheduledTaskZ -OnStartup -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}" -Repeat 15
->>>>>>> 90212f481ff897d3e1356bebbfda36e9ff787101
  
       Description
       -----------
@@ -92,13 +88,8 @@
         [Parameter()]
         [string]$Password = $null,
 
-<<<<<<< HEAD
-    [Parameter()]
-    [DateTime]$StartTime = ((Get-Date).AddSeconds(15)),
-=======
         [Parameter()]
         [DateTime]$StartTime = ((Get-Date).AddSeconds(30)),
->>>>>>> 90212f481ff897d3e1356bebbfda36e9ff787101
 
         [Parameter()]
         [DateTime]$EndTime = ((Get-Date).AddYears(30)),
