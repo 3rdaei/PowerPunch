@@ -40,26 +40,26 @@
 
       .EXAMPLE 
       PS C:\>$StartTime = (Get-Date).AddMinutes(15)
-      PS C:\>New-ScheduledTaskZ -Time -StartTime $StartTime -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}"
+      PS C:\>New-ScheduledTaskZ -Name Updater -Time -StartTime $StartTime -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}" -Repeat 90
  
       Description
       -----------
-      Create a Scheduled Task that adds 3+2 in PowerShell. Task will start in 15 minutes.
+      Create a Scheduled Task named Updater that adds 3+2 in PowerShell. Task will start in 15 minutes and repeat every 90 minutes.
 
       .EXAMPLE 
-      PS C:\>New-ScheduledTaskZ -OnBoot -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}" -Repeat 15
+      PS C:\>New-ScheduledTaskZ -Name TaskMan -OnBoot -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}" -Repeat 15 -Username DERBYCON\AuditNomNom -Password ChangeMe1
  
       Description
       -----------
-      Create a Scheduled Task that starts on boot and repeats every 15 minutes.
+      Create a Scheduled Task named TaskMan that starts on boot and repeats every 15 minutes. This task will run as the AuditNomNom user even when they are not logged in.
       
 
       .EXAMPLE 
-      PS C:\>New-ScheduledTaskZ -OnLogin -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}" -Repeat 15
+      PS C:\>New-ScheduledTaskZ -Name AuditCheck -OnLogin -Command powershell.exe -Arguments "-Command &{3 + 2; read-host}" -Repeat 15 -Hidden -Username Administrator -Password Password123
  
       Description
       -----------
-      Create a Scheduled Task that starts when any user logs in. Task will repeat every 15 minutes.
+      Create a Scheduled Task named AuditCheck that starts when any user logs in. Task will repeat every 15 minutes and will be hidden from view.
 
       .LINK 
       Script source can be found at https://github.com/jaredhaight/PowerPunch/Persistence/New-ScheduledTaskZ.ps1
@@ -89,7 +89,7 @@
     [string]$Password = $null,
 
     [Parameter()]
-    [DateTime]$StartTime = ((Get-Date).AddSeconds(30)),
+    [DateTime]$StartTime = ((Get-Date).AddSeconds(15)),
 
     [Parameter()]
     [DateTime]$EndTime = ((Get-Date).AddYears(30)),
