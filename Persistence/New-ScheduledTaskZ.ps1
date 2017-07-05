@@ -1,4 +1,4 @@
-﻿function New-ScheduledTaskZ {
+function New-ScheduledTaskZ {
     <# 
       .SYNOPSIS 
       Creates Scheduled Tasks using the Schedule.Service COM Object

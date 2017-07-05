@@ -1,4 +1,4 @@
-﻿function Get-Attack {
+function Get-Attack {
   <#
       .SYNOPSIS
       Find a PowerShell attack for a given keyword
@@ -189,6 +189,7 @@ categories. Those categories are:
 [*] Code Execution
 [*] File Tools
 [*] Network
+[*] Latteral Movement
 
 Get-Attack Examples:
 [*] get-attack netcat
