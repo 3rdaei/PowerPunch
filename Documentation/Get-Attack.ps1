@@ -1,7 +1,7 @@
 function Get-Attack {
   <#
       .SYNOPSIS
-      Find a PowerShell attack for a given keyword
+      The PS>Attack help command. Find a PowerShell attack for a given keyword
 
       .DESCRIPTION
       Get-Attack will return a list of attacks available in PS>Attack for a given search query. Running it without a term to search for will print out a PS>Attack help message.
@@ -203,6 +203,8 @@ of using most commands.
 Get-Help Examples:
 [*] get-help invoke-mimikatz
 [*] get-help invoke-mimikatz -Examples
+
+(Note: Get-Help will only work on un-obfuscated builds.)
 		
 "@
       return $message
